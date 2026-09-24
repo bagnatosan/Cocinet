@@ -32,7 +32,7 @@ class RecipeController extends Controller
         $ingredients = Ingredient::where('business_profile_id', auth()->user()->businessProfile->id)->get();
         $allProducts = Product::where('business_profile_id', auth()->user()->businessProfile->id)->get();
 
-        return view('costos', compact('product', 'ingredients', 'allProducts'));
+        return view('recipes.edit', compact('product', 'ingredients', 'allProducts'));
     }
 
     /**

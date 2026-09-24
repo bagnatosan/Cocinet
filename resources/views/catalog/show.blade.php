@@ -155,9 +155,18 @@
                                 <span class="text-lg font-black text-emerald-400">${{ number_format($product->price, 2, ',', '.') }}</span>
                             </div>
                             
-                            <button onclick="addToCart({{ $product->id }}, '{{ addslashes($product->name) }}', {{ $product->price ?? 0 }}, '{{ $product->image ? storage_url($product->image) : '' }}')" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-tr from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 shadow-md shadow-emerald-600/10 hover:shadow-emerald-500/20 border border-emerald-500/20 transition-all cursor-pointer w-full justify-center">
-                                <span>Agregar al carrito</span>
-                            </button>
+                            @auth
+                                <button onclick="addToCart({{ $product->id }}, '{{ addslashes($product->name) }}', {{ $product->price ?? 0 }}, '{{ $product->image ? storage_url($product->image) : '' }}')" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-tr from-emerald-600 to-teal-500 hover:from-emerald-500 hover:to-teal-400 shadow-md shadow-emerald-600/10 hover:shadow-emerald-500/20 border border-emerald-500/20 transition-all cursor-pointer w-full justify-center">
+                                    <span>Agregar al carrito</span>
+                                </button>
+                            @else
+                                <a href="{{ route('login') }}" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-300 hover:text-white bg-slate-900/60 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/30 transition-all cursor-pointer w-full justify-center">
+                                    <svg class="w-3.5 h-3.5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                                    </svg>
+                                    <span>Inicia sesión para pedir</span>
+                                </a>
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -294,6 +303,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+@auth
 <!-- Cart Floating Widget -->
 <div id="cart-widget" class="fixed bottom-6 right-6 z-50 hidden">
     <button onclick="toggleCartDrawer()" class="flex items-center gap-2 px-5 py-3.5 bg-gradient-to-tr from-emerald-600 to-teal-500 text-white rounded-full shadow-2xl hover:scale-105 transition-all cursor-pointer font-bold border border-emerald-500/30">
@@ -496,4 +506,5 @@ document.addEventListener('DOMContentLoaded', function() {
     updateCartWidget();
 });
 </script>
+@endauth
 @endsection

@@ -8,17 +8,21 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::table('reservations', function (Blueprint $table) {
-            $table->unsignedBigInteger('product_id')->nullable()->after('id');
-            $table->foreign('product_id')->references('id')->on('products')->nullOnDelete();
-        });
+        if (!Schema::hasColumn('reservations', 'product_id')) {
+            Schema::table('reservations', function (Blueprint $table) {
+                $table->unsignedBigInteger('product_id')->nullable()->after('id');
+                $table->foreign('product_id')->references('id')->on('products')->nullOnDelete();
+            });
+        }
     }
 
     public function down(): void
     {
-        Schema::table('reservations', function (Blueprint $table) {
-            $table->dropForeign(['product_id']);
-            $table->dropColumn('product_id');
-        });
+        if (Schema::hasColumn('reservations', 'product_id')) {
+            Schema::table('reservations', function (Blueprint $table) {
+                $table->dropForeign(['product_id']);
+                $table->dropColumn('product_id');
+            });
+        }
     }
 };

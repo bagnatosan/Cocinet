@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\File;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\AvailabilityController;
 use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MapController;
 use App\Http\Controllers\EntrepreneurContactController;
 

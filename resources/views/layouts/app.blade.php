@@ -13,15 +13,15 @@
         #mobile-menu { display: none; }
     </style>
 </head>
-<body class="text-slate-100 font-sans antialiased overflow-x-hidden relative flex flex-col" style="background-color:#1e3a2f; min-height:100%; display:flex; flex-direction:column; margin:0;">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased overflow-x-hidden relative flex flex-col" style="background-color:#f5efe6; min-height:100%; display:flex; flex-direction:column; margin:0;">
 
     @stack('page_bg')
 
-    <header class="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/75 backdrop-blur-md">
+    <header class="sticky top-0 z-50 w-full" style="background-color:#1b4332; border-bottom:1px solid rgba(255,255,255,0.12); box-shadow:0 4px 20px rgba(0,0,0,0.12);">
         <div class="container mx-auto px-4 min-h-16 py-2 flex items-center justify-between gap-3">
 
             <a href="{{ route('register.select') }}" class="flex items-center group" style="text-decoration:none;">
-                <img src="{{ asset('cocinet_logo_v2.png') }}" alt="Cocinet" style="height: 90px;width:auto;mix-blend-mode:screen;margin-top:-6px;margin-bottom:-6px;">
+                <img src="{{ asset('cocinet_logo_v2.png') }}" alt="Cocinet" style="height: 72px; width:auto; mix-blend-mode:screen; margin-top:-4px; margin-bottom:-4px;">
             </a>
 
             {{-- Desktop nav --}}
@@ -29,18 +29,18 @@
                 <nav class="flex items-center space-x-1 text-sm font-medium overflow-x-auto min-w-0">
 
                     <a href="{{ route('map.index') }}"
-                       class="shrink-0 px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('map.*') ? 'bg-green-600/20 text-green-400 border border-green-600/30' : '' }}">
+                       class="shrink-0 px-3 py-1.5 rounded-lg transition-all {{ request()->routeIs('map.*') ? 'bg-white/20 text-white border border-white/25 shadow-sm font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                         Mapa
                     </a>
 
                     @auth
                         @if(auth()->user()->role === 'client')
                             <a href="{{ route('dashboard') }}"
-                               class="shrink-0 px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('dashboard') || request()->routeIs('catalog.*') ? 'bg-green-600/20 text-green-400 border border-green-600/30' : '' }}">
+                               class="shrink-0 px-3 py-1.5 rounded-lg transition-all {{ request()->routeIs('dashboard') || request()->routeIs('catalog.*') ? 'bg-white/20 text-white border border-white/25 shadow-sm font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                                 Catálogos
                             </a>
                             <a href="{{ route('reservations.index') }}"
-                               class="shrink-0 px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('reservations.index') || request()->routeIs('reservations.edit') ? 'bg-green-600/20 text-green-400 border border-green-600/30' : '' }}">
+                               class="shrink-0 px-3 py-1.5 rounded-lg transition-all {{ request()->routeIs('reservations.index') || request()->routeIs('reservations.edit') ? 'bg-white/20 text-white border border-white/25 shadow-sm font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                                 Mis Compras
                             </a>
                         @endif
@@ -49,11 +49,11 @@
 
                     @guest
                         <a href="{{ route('login') }}"
-                        class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('login') ? 'bg-green-600/20 text-green-400 border border-green-600/30' : '' }}">
+                        class="px-3 py-1.5 rounded-lg transition-all {{ request()->routeIs('login') ? 'bg-white/20 text-white border border-white/25 shadow-sm font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                             Ingresar
                         </a>
                         <a href="{{ route('register.hub') }}"
-                        class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('register.*') && !request()->routeIs('register.select') ? 'bg-green-600/20 text-green-400 border border-green-600/30' : '' }}">
+                        class="px-3 py-1.5 rounded-lg transition-all {{ request()->routeIs('register.*') && !request()->routeIs('register.select') ? 'bg-white/20 text-white border border-white/25 shadow-sm font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                             Registrarse
                         </a>
                     @endguest
@@ -61,7 +61,7 @@
                     @auth
                         @if(auth()->user()->role === 'admin')
                             <a href="{{ route('admin.dashboard') }}"
-                            class="shrink-0 px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('admin.*') ? 'bg-purple-600/20 text-purple-400 border border-purple-600/30' : '' }}">
+                            class="shrink-0 px-3 py-1.5 rounded-lg transition-all {{ request()->routeIs('admin.*') ? 'bg-purple-500/30 text-purple-200 border border-purple-400/40 shadow-sm font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                                 Admin Panel
                             </a>
                         @endif
@@ -73,15 +73,15 @@
                                     : 0;
                             @endphp
 
-                            <span class="text-slate-600 px-1 shrink-0">|</span>
+                            <span class="text-white/30 px-1 shrink-0">|</span>
 
                             <a href="{{ route('dashboard') }}"
-                            class="shrink-0 px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('dashboard') ? 'bg-green-600/20 text-green-400 border border-green-600/30' : '' }}">
+                            class="shrink-0 px-3 py-1.5 rounded-lg transition-all {{ request()->routeIs('dashboard') ? 'bg-white/20 text-white border border-white/25 shadow-sm font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                                 Dashboard
                             </a>
 
                             <a href="{{ route('reservations.manage') }}"
-                            class="shrink-0 px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all flex items-center gap-1.5 {{ request()->routeIs('reservations.*') ? 'bg-green-600/20 text-green-400 border border-green-600/30' : '' }}">
+                            class="shrink-0 px-3 py-1.5 rounded-lg transition-all flex items-center gap-1.5 {{ request()->routeIs('reservations.*') ? 'bg-white/20 text-white border border-white/25 shadow-sm font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                                 <span>Pedidos</span>
                                 @if($pendingReservationsCount > 0)
                                     <span class="px-1.5 py-0.5 rounded-full bg-rose-600 text-white text-[10px] font-bold shadow-sm shadow-rose-600/20">
@@ -91,7 +91,7 @@
                             </a>
 
                             <a href="{{ route('availability.index') }}"
-                            class="shrink-0 px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('availability.*') ? 'bg-green-600/20 text-green-400 border border-green-600/30' : '' }}">
+                            class="shrink-0 px-3 py-1.5 rounded-lg transition-all {{ request()->routeIs('availability.*') ? 'bg-white/20 text-white border border-white/25 shadow-sm font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                                 Horarios
                             </a>
                         @endif
@@ -103,25 +103,26 @@
                     @if(auth()->user()->role === 'seller')
                         <div class="relative shrink-0" id="catalogo-menu-container">
                             <button type="button"
-                                    class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-all flex items-center gap-1 {{ request()->routeIs('categories.*') || request()->routeIs('products.*') || request()->routeIs('ingredients.*') || request()->routeIs('recipes.*') ? 'bg-green-600/20 text-green-400 border border-green-600/30' : '' }}"
+                                    class="px-3 py-1.5 rounded-lg transition-all flex items-center gap-1 {{ request()->routeIs('categories.*') || request()->routeIs('products.*') || request()->routeIs('ingredients.*') || request()->routeIs('recipes.*') ? 'bg-white/20 text-white border border-white/25 shadow-sm font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}"
                                     id="catalogo-trigger-btn">
                                 <span>Catálogo</span>
                                 <svg class="w-3 h-3 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" id="catalogo-arrow">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                 </svg>
                             </button>
-                            <div class="absolute left-0 mt-2 w-44 origin-top-left rounded-xl border border-slate-800 bg-slate-950 p-1.5 shadow-2xl backdrop-blur-md transition-all duration-200 transform opacity-0 scale-95 pointer-events-none z-[60]"
+                            <div class="absolute left-0 mt-2 w-44 origin-top-left rounded-xl p-1.5 shadow-2xl backdrop-blur-md transition-all duration-200 transform opacity-0 scale-95 pointer-events-none z-[60]"
+                                 style="background-color: #133b2c; border: 1px solid #1c4d36;"
                                  id="catalogo-dropdown-menu">
                                 <a href="{{ route('categories.index') }}"
-                                   class="block text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-lg transition-colors {{ request()->routeIs('categories.*') ? 'text-green-400' : '' }}">
+                                   class="block text-xs font-semibold text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg transition-colors {{ request()->routeIs('categories.*') ? 'text-amber-300' : '' }}">
                                     Categorías
                                 </a>
                                 <a href="{{ route('products.index') }}"
-                                   class="block text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-lg transition-colors {{ request()->routeIs('products.*') ? 'text-green-400' : '' }}">
+                                   class="block text-xs font-semibold text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg transition-colors {{ request()->routeIs('products.*') ? 'text-amber-300' : '' }}">
                                     Productos
                                 </a>
                                 <a href="{{ route('ingredients.index') }}"
-                                   class="block text-xs font-medium text-slate-300 hover:text-white hover:bg-slate-800 px-3 py-2 rounded-lg transition-colors {{ request()->routeIs('ingredients.*') ? 'text-green-400' : '' }}">
+                                   class="block text-xs font-semibold text-white/90 hover:text-white hover:bg-white/10 px-3 py-2 rounded-lg transition-colors {{ request()->routeIs('ingredients.*') ? 'text-amber-300' : '' }}">
                                     Ingredientes
                                 </a>
                             </div>
@@ -148,9 +149,9 @@
 
                     <div class="relative shrink-0" id="user-menu-container">
                         <button type="button"
-                                class="flex items-center space-x-2 text-sm text-slate-300 bg-slate-900/60 hover:bg-slate-900/80 border border-slate-800 rounded-lg px-3 py-1.5 cursor-pointer transition-all duration-200 focus:outline-none"
+                                class="flex items-center space-x-2 text-sm text-white/90 bg-white/10 hover:bg-white/15 border border-white/20 rounded-lg px-3 py-1.5 cursor-pointer transition-all duration-200 focus:outline-none"
                                 id="nav-user-display-btn">
-                            <svg class="w-4 h-4 text-indigo-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <svg class="w-4 h-4 text-emerald-300 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                             </svg>
                             <span class="font-medium text-xs sm:text-sm">
@@ -236,27 +237,27 @@
         </div>
 
         {{-- Mobile menu panel --}}
-        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800 bg-slate-950/95 backdrop-blur-md">
+        <div id="mobile-menu" class="hidden md:hidden border-t" style="background-color:#1b4332; border-color:rgba(255,255,255,0.12);">
             <div class="px-4 py-4 space-y-1">
 
                 <a href="{{ route('map.index') }}"
-                   class="flex items-center px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('map.*') ? 'bg-green-600/20 text-green-400' : '' }}">
+                   class="flex items-center px-3 py-2.5 rounded-lg text-sm transition-all {{ request()->routeIs('map.*') ? 'bg-white/20 text-white font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                     Mapa
                 </a>
 
                 @auth
                     @if(auth()->user()->role === 'client')
                         <a href="{{ route('dashboard') }}"
-                           class="flex items-center px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('dashboard') ? 'bg-green-600/20 text-green-400' : '' }}">
+                           class="flex items-center px-3 py-2.5 rounded-lg text-sm transition-all {{ request()->routeIs('dashboard') ? 'bg-white/20 text-white font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                             Catálogos
                         </a>
                         <a href="{{ route('reservations.index') }}"
-                           class="flex items-center px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('reservations.index') ? 'bg-green-600/20 text-green-400' : '' }}">
+                           class="flex items-center px-3 py-2.5 rounded-lg text-sm transition-all {{ request()->routeIs('reservations.index') ? 'bg-white/20 text-white font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                             Mis Compras
                         </a>
-                        <div class="border-t border-slate-800 my-2"></div>
+                        <div class="my-2 border-t" style="border-color:rgba(255,255,255,0.12);"></div>
                         <a href="{{ route('client_profile.edit') }}"
-                           class="flex items-center px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all">
+                           class="flex items-center px-3 py-2.5 rounded-lg text-sm text-white/80 hover:text-white hover:bg-white/10 transition-all">
                             Mi Perfil
                         </a>
                     @endif
@@ -268,42 +269,42 @@
                                 : 0);
                         @endphp
                         <a href="{{ route('dashboard') }}"
-                           class="flex items-center px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('dashboard') ? 'bg-green-600/20 text-green-400' : '' }}">
+                           class="flex items-center px-3 py-2.5 rounded-lg text-sm transition-all {{ request()->routeIs('dashboard') ? 'bg-white/20 text-white font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                             Dashboard
                         </a>
                         <a href="{{ route('reservations.manage') }}"
-                           class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('reservations.*') ? 'bg-green-600/20 text-green-400' : '' }}">
+                           class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm transition-all {{ request()->routeIs('reservations.*') ? 'bg-white/20 text-white font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                             <span>Pedidos</span>
                             @if($pendingReservationsCount > 0)
                                 <span class="px-1.5 py-0.5 rounded-full bg-rose-600 text-white text-[10px] font-bold">{{ $pendingReservationsCount }}</span>
                             @endif
                         </a>
                         <a href="{{ route('availability.index') }}"
-                           class="flex items-center px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('availability.*') ? 'bg-green-600/20 text-green-400' : '' }}">
+                           class="flex items-center px-3 py-2.5 rounded-lg text-sm transition-all {{ request()->routeIs('availability.*') ? 'bg-white/20 text-white font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                             Horarios
                         </a>
-                        <div class="border-t border-slate-800 my-2"></div>
-                        <p class="px-3 pt-1 pb-0.5 text-[10px] font-bold text-slate-500 uppercase tracking-wider">Catálogo</p>
+                        <div class="my-2 border-t" style="border-color:rgba(255,255,255,0.12);"></div>
+                        <p class="px-3 pt-1 pb-0.5 text-[10px] font-bold text-white/50 uppercase tracking-wider">Catálogo</p>
                         <a href="{{ route('categories.index') }}"
-                           class="flex items-center px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('categories.*') ? 'bg-green-600/20 text-green-400' : '' }}">
+                           class="flex items-center px-3 py-2.5 rounded-lg text-sm transition-all {{ request()->routeIs('categories.*') ? 'bg-white/20 text-white font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                             Categorías
                         </a>
                         <a href="{{ route('products.index') }}"
-                           class="flex items-center px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('products.*') ? 'bg-green-600/20 text-green-400' : '' }}">
+                           class="flex items-center px-3 py-2.5 rounded-lg text-sm transition-all {{ request()->routeIs('products.*') ? 'bg-white/20 text-white font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                             Productos
                         </a>
                         <a href="{{ route('ingredients.index') }}"
-                           class="flex items-center px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('ingredients.*') ? 'bg-green-600/20 text-green-400' : '' }}">
+                           class="flex items-center px-3 py-2.5 rounded-lg text-sm transition-all {{ request()->routeIs('ingredients.*') ? 'bg-white/20 text-white font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                             Ingredientes
                         </a>
-                        <div class="border-t border-slate-800 my-2"></div>
+                        <div class="my-2 border-t" style="border-color:rgba(255,255,255,0.12);"></div>
                         <a href="{{ route('business_profile.edit') }}"
-                           class="flex items-center px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all">
+                           class="flex items-center px-3 py-2.5 rounded-lg text-sm text-white/80 hover:text-white hover:bg-white/10 transition-all">
                             Configurar Perfil
                         </a>
                         @if(auth()->user()->businessProfile)
                             <a href="{{ route('catalog.show', auth()->user()->businessProfile->id) }}"
-                               class="flex items-center px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all"
+                               class="flex items-center px-3 py-2.5 rounded-lg text-sm text-white/80 hover:text-white hover:bg-white/10 transition-all"
                                target="_blank">
                                 Ver mi catálogo público
                             </a>
@@ -312,16 +313,16 @@
 
                     @if(auth()->user()->role === 'admin')
                         <a href="{{ route('admin.dashboard') }}"
-                           class="flex items-center px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all {{ request()->routeIs('admin.*') ? 'bg-purple-600/20 text-purple-400' : '' }}">
+                           class="flex items-center px-3 py-2.5 rounded-lg text-sm transition-all {{ request()->routeIs('admin.*') ? 'bg-purple-500/30 text-purple-200 font-semibold' : 'text-white/80 hover:text-white hover:bg-white/10' }}">
                             Admin Panel
                         </a>
                     @endif
 
-                    <div class="border-t border-slate-800 my-2"></div>
+                    <div class="my-2 border-t" style="border-color:rgba(255,255,255,0.12);"></div>
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit"
-                                class="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-rose-400 hover:text-rose-300 hover:bg-slate-800 transition-all text-left">
+                                class="w-full flex items-center gap-2 px-3 py-2.5 rounded-lg text-sm text-rose-300 hover:text-rose-100 hover:bg-rose-500/20 transition-all text-left">
                             <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
                             </svg>
@@ -332,11 +333,11 @@
 
                 @guest
                     <a href="{{ route('login') }}"
-                       class="flex items-center px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all">
+                       class="flex items-center px-3 py-2.5 rounded-lg text-sm text-white/80 hover:text-white hover:bg-white/10 transition-all">
                         Ingresar
                     </a>
                     <a href="{{ route('register.hub') }}"
-                       class="flex items-center px-3 py-2.5 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-slate-800 transition-all">
+                       class="flex items-center px-3 py-2.5 rounded-lg text-sm text-white/80 hover:text-white hover:bg-white/10 transition-all">
                         Registrarse
                     </a>
                 @endguest
@@ -394,11 +395,11 @@
     </main>
         
 
-    <footer style="background-color:#1e3a2f;border-top:1px solid rgba(255,255,255,0.08);padding:2rem 1.5rem;text-align:center;position:relative;z-index:10;">
+    <footer style="background-color:#1b4332;border-top:1px solid rgba(255,255,255,0.12);padding:2.5rem 1.5rem;text-align:center;position:relative;z-index:10;box-shadow:0 -4px 20px rgba(0,0,0,0.05);">
         <div style="max-width:480px;margin:0 auto;">
-            <p style="font-size:1.1rem;font-weight:700;color:#ffffff;letter-spacing:0.02em;">Cocinet</p>
-            <p style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:0.375rem;">Conectamos emprendimientos gastronómicos locales con quienes quieren comprar.</p>
-            <p style="font-size:0.7rem;color:rgba(255,255,255,0.3);margin-top:1rem;">&copy; {{ date('Y') }} Cocinet. Todos los derechos reservados.</p>
+            <p style="font-size:1.15rem;font-weight:700;color:#ffffff;letter-spacing:0.02em;">Cocinet</p>
+            <p style="font-size:0.8rem;color:rgba(255,255,255,0.7);margin-top:0.375rem;">Conectamos emprendimientos gastronómicos locales con quienes quieren comprar.</p>
+            <p style="font-size:0.75rem;color:rgba(255,255,255,0.45);margin-top:1rem;">&copy; {{ date('Y') }} Cocinet. Todos los derechos reservados.</p>
         </div>
     </footer>
 

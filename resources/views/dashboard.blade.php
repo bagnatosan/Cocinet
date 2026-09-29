@@ -5,10 +5,6 @@
 @section('main_align', 'items-start')
 @section('content_width', 'max-w-6xl mx-auto')
 
-@push('page_bg')
-<div style="position:fixed;inset:0;z-index:0;pointer-events:none;background:#1e3a2f;"></div>
-@endpush
-
 @section('content')
 @if(auth()->user()->role === 'client')
 <div class="animate-fade-in">
@@ -25,14 +21,14 @@
 
     {{-- Próximas Reservas (debajo del banner) --}}
     @if($upcomingReservations->isNotEmpty())
-    <div style="margin-bottom:1.5rem;padding:1rem 1.25rem;border-radius:0.875rem;border:1px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.95);">
+    <div style="margin-bottom:1.5rem;padding:1rem 1.25rem;border-radius:0.875rem;border:1px solid #e8e0d0;background:#ffffff;box-shadow:0 2px 8px rgba(27,67,50,0.04);">
         <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:0.75rem;">
             <span style="font-size:0.75rem;font-weight:700;color:#6a6966;text-transform:uppercase;letter-spacing:0.08em;">Mis próximas compras</span>
             <a href="{{ route('reservations.index') }}" style="font-size:0.75rem;font-weight:600;color:#2d6a4f;">Ver todas →</a>
         </div>
         <div style="display:flex;flex-direction:column;gap:0.5rem;">
             @foreach($upcomingReservations as $res)
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:0.75rem;padding:0.5rem 0.75rem;border-radius:0.625rem;background:#f9f7f2;border:1px solid #e8e0d0;">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:0.75rem;padding:0.5rem 0.75rem;border-radius:0.625rem;background:#faf6ef;border:1px solid #e8e0d0;">
                 <div style="display:flex;align-items:center;gap:0.625rem;min-width:0;overflow:hidden;">
                     <span style="font-size:0.75rem;font-weight:700;color:#2d6a4f;white-space:nowrap;">{{ \Carbon\Carbon::parse($res->reservation_time)->format('H:i') }}</span>
                     <div style="min-width:0;overflow:hidden;">
@@ -55,12 +51,12 @@
 
         {{-- Buscador --}}
         <div class="relative max-w-md mx-auto">
-            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" style="color:#9a9390;">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" style="color:#7a8c80;">
                 <svg class="w-5 h-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>
             </div>
-            <input type="text" id="business-search" placeholder="Buscar emprendimientos..." style="width:100%;padding:0.6rem 1rem 0.6rem 2.5rem;border-radius:0.75rem;border:1.5px solid rgba(255,255,255,0.3);background:rgba(255,255,255,0.15);color:#ffffff;font-size:0.875rem;outline:none;transition:border-color 0.2s;" placeholder-style="color:rgba(255,255,255,0.6);" onfocus="this.style.borderColor='rgba(255,255,255,0.6)'" onblur="this.style.borderColor='rgba(255,255,255,0.3)'">
+            <input type="text" id="business-search" placeholder="Buscar emprendimientos..." style="width:100%;padding:0.65rem 1rem 0.65rem 2.5rem;border-radius:0.75rem;border:1.5px solid #e5dac9;background:#ffffff;color:#1a1918;font-size:0.875rem;outline:none;box-shadow:0 2px 8px rgba(27,67,50,0.04);transition:all 0.2s;" onfocus="this.style.borderColor='#2d6a4f';this.style.boxShadow='0 0 0 3px rgba(45,106,79,0.12)'" onblur="this.style.borderColor='#e5dac9';this.style.boxShadow='0 2px 8px rgba(27,67,50,0.04)'">
         </div>
 
         {{-- Grilla de Negocios --}}
@@ -137,8 +133,8 @@
                                 @endif
                             </div>
 
-                            <a href="{{ route('catalog.show', $business->id) }}" style="display:inline-flex;align-items:center;gap:0.375rem;padding:0.4rem 0.875rem;border-radius:0.625rem;font-size:0.75rem;font-weight:600;color:#ffffff;background:#1e3a2f;border:none;text-decoration:none;transition:background 0.2s;"
-                               onmouseenter="this.style.background='#2d6a4f'" onmouseleave="this.style.background='#1e3a2f'">
+                            <a href="{{ route('catalog.show', $business->id) }}" style="display:inline-flex;align-items:center;gap:0.375rem;padding:0.45rem 0.9rem;border-radius:0.625rem;font-size:0.75rem;font-weight:700;color:#ffffff;background:#1b4332;border:none;text-decoration:none;transition:all 0.2s;box-shadow:0 2px 6px rgba(27,67,50,0.2);"
+                               onmouseenter="this.style.background='#2d6a4f'" onmouseleave="this.style.background='#1b4332'">
                                 Ver Catálogo
                                 <svg style="width:0.75rem;height:0.75rem;" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
@@ -149,11 +145,11 @@
                 @endforeach
             </div>
 
-            <div id="no-results-message" class="hidden" style="border:1.5px dashed rgba(255,255,255,0.3);border-radius:1rem;padding:4rem;text-align:center;background:rgba(0,0,0,0.3);">
-                <svg style="width:3rem;height:3rem;margin:0 auto 1rem;color:rgba(255,255,255,0.4);" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div id="no-results-message" class="hidden" style="border:1.5px dashed #d8cbb5;border-radius:1rem;padding:4rem;text-align:center;background:#ffffff;box-shadow:0 2px 10px rgba(27,67,50,0.04);">
+                <svg style="width:3rem;height:3rem;margin:0 auto 1rem;color:#b8b0a0;" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <p style="font-size:0.95rem;color:rgba(255,255,255,0.75);font-weight:500;">No encontramos ningún emprendimiento con ese nombre.</p>
+                <p style="font-size:0.95rem;color:#6a6966;font-weight:500;">No encontramos ningún emprendimiento con ese nombre.</p>
             </div>
         @endif
     </div>
@@ -194,23 +190,12 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 @else
-<div class="w-full animate-fade-in text-center" style="background:rgba(255,255,255,0.92);border-radius:1.25rem;padding:2rem 2.5rem 2.5rem;box-shadow:0 8px 32px rgba(0,0,0,0.18);margin-top:1.5rem;">
-
-    <!-- User/Role Badge -->
-    <!-- @if(auth()->user()->role === 'admin')
-        <span class="px-3.5 py-1 text-xs font-bold tracking-wider rounded-full uppercase border shadow-sm text-purple-400 bg-purple-500/10 border-purple-500/20">
-            Sesión Iniciada: Administrador
-        </span>
-    @elseif(auth()->user()->role === 'seller')
-        <span class="px-3.5 py-1 text-xs font-bold tracking-wider rounded-full uppercase border shadow-sm text-purple-400 bg-purple-500/10 border-purple-500/20">
-            Sesión Iniciada: Emprendedor
-        </span>
-    @endif -->
+<div class="w-full animate-fade-in text-center" style="background:#ffffff;border:1px solid #e5dac9;border-radius:1.25rem;padding:2.5rem 2rem 2.5rem;box-shadow:0 10px 30px rgba(27,67,50,0.06);margin-top:1.5rem;">
 
     <!-- Heading -->
-    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mt-6" style="color:#1a1918 !important;">
+    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mt-2" style="color:#133b2c !important;">
         ¡Bienvenido,
-        <span style="color:#f5a623;">
+        <span style="color:#d97706;">
             @if(auth()->user()->role === 'seller' && auth()->user()->businessProfile)
                 {{ auth()->user()->businessProfile->business_name }}
             @else
@@ -219,7 +204,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </span>!
     </h1>
 
-    <p class="text-slate-500 mt-4 max-w-md mx-auto text-sm md:text-base leading-relaxed">
+    <p class="mt-3 max-w-md mx-auto text-sm md:text-base leading-relaxed" style="color:#6a6966;">
         Este es tu panel de control. Has ingresado correctamente en la plataforma y tu sesión se encuentra activa.
     </p>
 
@@ -233,21 +218,21 @@ document.addEventListener('DOMContentLoaded', function() {
 
         {{-- Stat cards --}}
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8 max-w-2xl mx-auto">
-            <div class="p-4 rounded-xl border border-amber-500/20 bg-amber-500/5 text-left">
-                <p class="text-2xl font-bold text-amber-400">{{ $pendingCount }}</p>
-                <p class="text-xs text-slate-400 mt-0.5">Pendientes</p>
+            <div class="p-4 rounded-xl border border-amber-500/25 bg-amber-50 text-left">
+                <p class="text-2xl font-bold text-amber-600">{{ $pendingCount }}</p>
+                <p class="text-xs text-amber-900/70 mt-0.5 font-medium">Pendientes</p>
             </div>
-            <div class="p-4 rounded-xl border border-sky-500/20 bg-sky-500/5 text-left">
-                <p class="text-2xl font-bold text-sky-400">{{ $confirmedCount }}</p>
-                <p class="text-xs text-slate-400 mt-0.5">Confirmadas</p>
+            <div class="p-4 rounded-xl border border-sky-500/25 bg-sky-50 text-left">
+                <p class="text-2xl font-bold text-sky-600">{{ $confirmedCount }}</p>
+                <p class="text-xs text-sky-900/70 mt-0.5 font-medium">Confirmadas</p>
             </div>
-            <div class="p-4 rounded-xl border border-emerald-500/20 bg-emerald-500/5 text-left">
-                <p class="text-2xl font-bold text-emerald-400">{{ $todayCount }}</p>
-                <p class="text-xs text-slate-400 mt-0.5">Hoy</p>
+            <div class="p-4 rounded-xl border border-emerald-500/25 bg-emerald-50 text-left">
+                <p class="text-2xl font-bold text-emerald-600">{{ $todayCount }}</p>
+                <p class="text-xs text-emerald-900/70 mt-0.5 font-medium">Hoy</p>
             </div>
-            <div class="p-4 rounded-xl border border-rose-500/20 bg-rose-500/5 text-left">
-                <p class="text-2xl font-bold text-rose-400">{{ $overdueCount }}</p>
-                <p class="text-xs text-slate-400 mt-0.5">Vencidas</p>
+            <div class="p-4 rounded-xl border border-rose-500/25 bg-rose-50 text-left">
+                <p class="text-2xl font-bold text-rose-600">{{ $overdueCount }}</p>
+                <p class="text-xs text-rose-900/70 mt-0.5 font-medium">Vencidas</p>
             </div>
         </div>
     @endif
@@ -256,37 +241,37 @@ document.addEventListener('DOMContentLoaded', function() {
         {{-- Upcoming reservations --}}
         <div class="mt-10 max-w-3xl mx-auto text-left space-y-6">
             <div class="flex items-center justify-between">
-                <h2 class="text-lg font-bold text-white flex items-center gap-2">
-                    <svg class="w-5 h-5 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                <h2 class="text-lg font-bold flex items-center gap-2" style="color:#133b2c;">
+                    <svg class="w-5 h-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
                     Próximas Compras
                 </h2>
-                <a href="{{ route('reservations.manage') }}" class="text-xs font-medium text-indigo-400 hover:text-indigo-300 transition-colors">Ver todas →</a>
+                <a href="{{ route('reservations.manage') }}" class="text-xs font-semibold text-emerald-700 hover:text-emerald-800 transition-colors">Ver todas →</a>
             </div>
 
             {{-- Today --}}
             <div>
-                <h3 class="text-sm font-semibold text-slate-400 mb-3 flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span>
+                <h3 class="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span>
                     Hoy — {{ now()->format('d/m/Y') }}
                     <span class="text-xs text-slate-500 font-normal">({{ $reservationsToday->count() }})</span>
                 </h3>
                 @if($reservationsToday->isEmpty())
-                    <p class="text-sm text-slate-600 py-4 text-center border border-dashed border-slate-800 rounded-xl">Sin compras para hoy.</p>
+                    <p class="text-sm py-4 text-center rounded-xl" style="border:1px dashed #d8cbb5;background:#faf6ef;color:#7a8c80;">Sin compras para hoy.</p>
                 @else
                     <div class="space-y-2">
                         @foreach($reservationsToday as $res)
-                            <a href="{{ route('reservations.detail', $res) }}" class="block p-3 rounded-xl border border-slate-800 bg-slate-900/20 hover:bg-slate-900/40 hover:border-slate-700 transition-all">
+                            <a href="{{ route('reservations.detail', $res) }}" class="block p-3 rounded-xl transition-all" style="border:1px solid #e8e0d0;background:#faf6ef;">
                                 <div class="flex items-center justify-between gap-3">
                                     <div class="flex items-center gap-3 min-w-0">
-                                        <span class="text-xs font-bold text-indigo-400 tabular-nums shrink-0">{{ \Carbon\Carbon::parse($res->reservation_time)->format('H:i') }}</span>
-                                        <span class="text-sm font-medium text-white truncate">{{ $res->client_name }}</span>
-                                        <span class="text-xs text-slate-500 truncate hidden sm:inline">{{ $res->product?->name }}</span>
+                                        <span class="text-xs font-bold text-emerald-700 tabular-nums shrink-0">{{ \Carbon\Carbon::parse($res->reservation_time)->format('H:i') }}</span>
+                                        <span class="text-sm font-semibold truncate" style="color:#1a1918;">{{ $res->client_name }}</span>
+                                        <span class="text-xs truncate hidden sm:inline" style="color:#6a6966;">{{ $res->product?->name }}</span>
                                     </div>
                                     <span class="shrink-0 text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full
-                                        @if($res->status === 'pending') bg-amber-500/10 text-amber-400 border border-amber-500/20
-                                        @elseif($res->status === 'confirmed') bg-sky-500/10 text-sky-400 border border-sky-500/20
-                                        @elseif($res->status === 'completed') bg-emerald-500/10 text-emerald-400 border border-emerald-500/20
-                                        @else bg-rose-500/10 text-rose-400 border border-rose-500/20
+                                        @if($res->status === 'pending') bg-amber-500/15 text-amber-700 border border-amber-500/30
+                                        @elseif($res->status === 'confirmed') bg-sky-500/15 text-sky-700 border border-sky-500/30
+                                        @elseif($res->status === 'completed') bg-emerald-500/15 text-emerald-700 border border-emerald-500/30
+                                        @else bg-rose-500/15 text-rose-700 border border-rose-500/30
                                         @endif">
                                         {{ $res->status === 'pending' ? 'Pendiente' : ($res->status === 'confirmed' ? 'Confirmada' : ($res->status === 'completed' ? 'Completada' : 'Cancelada')) }}
                                     </span>
@@ -299,28 +284,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
             {{-- Tomorrow --}}
             <div>
-                <h3 class="text-sm font-semibold text-slate-400 mb-3 flex items-center gap-2">
-                    <span class="w-2 h-2 rounded-full bg-sky-400 inline-block"></span>
+                <h3 class="text-sm font-bold text-slate-700 mb-3 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-sky-500 inline-block"></span>
                     Mañana — {{ now()->addDay()->format('d/m/Y') }}
                     <span class="text-xs text-slate-500 font-normal">({{ $reservationsTomorrow->count() }})</span>
                 </h3>
                 @if($reservationsTomorrow->isEmpty())
-                    <p class="text-sm text-slate-600 py-4 text-center border border-dashed border-slate-800 rounded-xl">Sin compras para mañana.</p>
+                    <p class="text-sm py-4 text-center rounded-xl" style="border:1px dashed #d8cbb5;background:#faf6ef;color:#7a8c80;">Sin compras para mañana.</p>
                 @else
                     <div class="space-y-2">
                         @foreach($reservationsTomorrow as $res)
-                            <a href="{{ route('reservations.detail', $res) }}" class="block p-3 rounded-xl border border-slate-800 bg-slate-900/20 hover:bg-slate-900/40 hover:border-slate-700 transition-all">
+                            <a href="{{ route('reservations.detail', $res) }}" class="block p-3 rounded-xl transition-all" style="border:1px solid #e8e0d0;background:#faf6ef;">
                                 <div class="flex items-center justify-between gap-3">
                                     <div class="flex items-center gap-3 min-w-0">
-                                        <span class="text-xs font-bold text-indigo-400 tabular-nums shrink-0">{{ \Carbon\Carbon::parse($res->reservation_time)->format('H:i') }}</span>
-                                        <span class="text-sm font-medium text-white truncate">{{ $res->client_name }}</span>
-                                        <span class="text-xs text-slate-500 truncate hidden sm:inline">{{ $res->product?->name }}</span>
+                                        <span class="text-xs font-bold text-emerald-700 tabular-nums shrink-0">{{ \Carbon\Carbon::parse($res->reservation_time)->format('H:i') }}</span>
+                                        <span class="text-sm font-semibold truncate" style="color:#1a1918;">{{ $res->client_name }}</span>
+                                        <span class="text-xs truncate hidden sm:inline" style="color:#6a6966;">{{ $res->product?->name }}</span>
                                     </div>
                                     <span class="shrink-0 text-[10px] font-semibold uppercase px-2 py-0.5 rounded-full
-                                        @if($res->status === 'pending') bg-amber-500/10 text-amber-400 border border-amber-500/20
-                                        @elseif($res->status === 'confirmed') bg-sky-500/10 text-sky-400 border border-sky-500/20
-                                        @elseif($res->status === 'completed') bg-emerald-500/10 text-emerald-400 border border-emerald-500/20
-                                        @else bg-rose-500/10 text-rose-400 border border-rose-500/20
+                                        @if($res->status === 'pending') bg-amber-500/15 text-amber-700 border border-amber-500/30
+                                        @elseif($res->status === 'confirmed') bg-sky-500/15 text-sky-700 border border-sky-500/30
+                                        @elseif($res->status === 'completed') bg-emerald-500/15 text-emerald-700 border border-emerald-500/30
+                                        @else bg-rose-500/15 text-rose-700 border border-rose-500/30
                                         @endif">
                                         {{ $res->status === 'pending' ? 'Pendiente' : ($res->status === 'confirmed' ? 'Confirmada' : ($res->status === 'completed' ? 'Completada' : 'Cancelada')) }}
                                     </span>
@@ -333,7 +318,11 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
 
         <div class="mt-8 text-center">
-            <a href="{{ route('reservations.manage') }}" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-indigo-600/20 border border-indigo-500/30 hover:bg-indigo-600/30 transition-all">
+            <a href="{{ route('reservations.manage') }}"
+               style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1.75rem;border-radius:0.75rem;font-size:0.875rem;font-weight:700;color:#ffffff;background:#1b4332;box-shadow:0 4px 14px rgba(27,67,50,0.25);border:none;text-decoration:none;transition:all 0.2s;"
+               onmouseenter="this.style.background='#2d6a4f';this.style.transform='scale(1.02)';"
+               onmouseleave="this.style.background='#1b4332';this.style.transform='scale(1)';"
+            >
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
                 Gestionar Pedidos
             </a>
@@ -343,12 +332,12 @@ document.addEventListener('DOMContentLoaded', function() {
     @if(auth()->user()->role === 'admin')
         {{-- Admin section --}}
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10 max-w-lg mx-auto">
-            <a href="{{ route('admin.dashboard') }}" class="p-6 rounded-xl border border-purple-900 bg-purple-500/10 backdrop-blur text-left hover:bg-purple-500/20 transition-colors">
-                <h3 class="font-bold text-purple-300 text-sm">Panel de Administración</h3>
-                <p class="text-slate-500 text-xs mt-1">Gestión global de usuarios, productos y estadísticas.</p>
+            <a href="{{ route('admin.dashboard') }}" class="p-6 rounded-xl border border-purple-200 bg-purple-50 text-left hover:bg-purple-100/70 transition-colors">
+                <h3 class="font-bold text-purple-900 text-sm">Panel de Administración</h3>
+                <p class="text-slate-600 text-xs mt-1">Gestión global de usuarios, productos y estadísticas.</p>
             </a>
-            <div class="p-6 rounded-xl border border-slate-900 bg-slate-900/20 backdrop-blur text-left">
-                <h3 class="font-bold text-slate-200 text-sm">Tu Perfil</h3>
+            <div class="p-6 rounded-xl border border-slate-200 bg-slate-50 text-left">
+                <h3 class="font-bold text-slate-800 text-sm">Tu Perfil</h3>
                 <p class="text-slate-500 text-xs mt-1">Configura los datos de tu cuenta de administrador.</p>
             </div>
         </div>
